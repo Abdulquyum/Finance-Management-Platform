@@ -29,7 +29,7 @@ class AuthService {
         console.log('⚠️ Development mode: Using mock user');
         return {
           $id: 'dev-user-123',
-          email: 'ajumobiabdulquyum@gmail.com',
+          email: 'abdulquyumajumobi@gmail.com',
           name: 'Abdulquyum Development User'
         };
       }

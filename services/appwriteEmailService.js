@@ -3,20 +3,17 @@ const { Client, Messaging } = require('node-appwrite');
 
 class AppwriteEmailService {
   constructor() {
-    // 1. Initialize the Client object correctly
     const client = new Client()
-      .setEndpoint('https://fra.cloud.appwrite.io/v1') // Your API Endpoint
-      .setProject(process.env.APPWRITE_PROJECT_ID) // Your project ID
-      .setKey(process.env.APPWRITE_API_KEY); // Your secret API key
+      .setEndpoint('https://fra.cloud.appwrite.io/v1')
+      .setProject(process.env.APPWRITE_PROJECT_ID)
+      .setKey(process.env.APPWRITE_API_KEY);
 
-    // 2. Initialize Messaging service correctly
     this.messaging = new Messaging(client);
-    this.messagingId = process.env.APPWRITE_MESSAGING_ID; // Your Messaging Topic ID
+    this.messagingId = process.env.APPWRITE_MESSAGING_ID;
   }
 
   async sendInvoicePaidNotification(userEmail, clientName, invoiceAmount, invoiceId) {
     try {
-      // 3. Use the correct method to create an email
       const message = await this.messaging.createEmail(
         this.messagingId,
         {
@@ -29,8 +26,8 @@ class AppwriteEmailService {
             <br>
             <p>Thank you for using our finance platform!</p>
           `,
-          topics: ['invoice-payments'], // Optional: Use if you have created a topic
-          recipients: [userEmail] // Send to specific recipients
+          topics: ['invoice-payments'],
+          recipients: [userEmail]
         }
       );
 
